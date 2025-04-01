@@ -3,7 +3,8 @@
 <br>
 Z1: Efficient Test-time Scaling with Code
 
-
+<p>Train Large Language Model to Reason with Shifted Thinking
+</p>
 </h1>
 
 <p align="center">
@@ -18,8 +19,8 @@ Z1: Efficient Test-time Scaling with Code
 </p>
 
 <p align="center">
-    <img src="./assets/z1-comp.png" width="800">
-    <img src="./assets/tts.png" width="800">
+    <img src="./assets/z1-comp.png" width="700">
+    <img src="./assets/tts.png" width="700">
     <br>
 
 </p>
