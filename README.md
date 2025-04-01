@@ -1,11 +1,13 @@
-<h1 align="center">
+<div align="center">
+  <h1 align="center">
 <img src="./assets/logo.png" width="120" alt="Z1-Coder" />
 <br>
 Z1: Efficient Test-time Scaling with Code
-
+</h1>
 <p>Train Large Language Model to Reason with Shifted Thinking
 </p>
-</h1>
+</div>
+<br>
 
 <p align="center">
   <a href=""><b>[📜 Paper]</b></a> •
