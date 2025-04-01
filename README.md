@@ -43,8 +43,8 @@ Z1: Efficient Test-time Scaling with Code
 
 
 ## Updates
-<!-- - **[2025/01/17]** 🎉 We have released our [Blog]([https://huggingface.co/Z1-Coder](https://z1-coder.github.io/Z1CODER/posts/202501-z1-coder-init/z1-coder-blog/))! -->
-- **[2025/04/01]** 🎉 We have released our [Z1-7B](https://huggingface.co/efficientscaling/Z1-7B) model and  [data](https://huggingface.co/datasets/efficientscaling/Z1-Code-Reasoning-107K) through Huggingface!
+<!-- - **[2025/04/01]** 🎉 We have released our [training data](https://huggingface.co/datasets/efficientscaling/Z1-Code-Reasoning-107K))! -->
+- **[2025/04/01]** 🎉 We have released our [Z1-7B](https://huggingface.co/efficientscaling/Z1-7B) model  through Huggingface!
 
 
 <!-- # Links
