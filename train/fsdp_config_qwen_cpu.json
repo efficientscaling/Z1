@@ -1,0 +1,5 @@
+{
+    "transformer_layer_cls_to_wrap": "Qwen2DecoderLayer",
+    "fsdp_offload_params": true,
+    "cpu_ram_efficient_loading": true
+}
