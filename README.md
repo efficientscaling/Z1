@@ -7,7 +7,10 @@ Z1: Efficient Test-time Scaling with Code
 <p>Train Large Language Model to Reason with Shifted Thinking
 </p>
 </div>
-<br>
+
+<p align="center">
+Repo for paper "<a href="https://arxiv.org/abs/2504.00810" target="_blank">Z1: Efficient Test-time Scaling with Code</a>"
+</p>
 
 <p align="center">
   <a href=""><b>[📜 Paper]</b></a> •
@@ -26,6 +29,9 @@ Z1: Efficient Test-time Scaling with Code
     <br>
 
 </p>
+
+
+
 <!-- <div align="center">
 
 <div align="center" style="font-family: Arial, sans-serif;">
@@ -129,4 +135,16 @@ and
 ```sh
 cd eval/code_evaluation/bigcodebench
 pip install -r 'requirements.txt'
+```
+## Citation
+```
+@misc{yu2025efficientscaling,
+      title={Z1: Efficient Test-time Scaling with Code}, 
+      author={Zhaojian Yu and Yinghao Wu and Yilun Zhao and Arman Cohan and Xiao-Ping Zhang},
+      year={2025},
+      eprint={2504.00810},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2504.00810}, 
+}
 ```
