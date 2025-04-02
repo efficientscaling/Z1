@@ -13,7 +13,7 @@ Repo for paper "<a href="https://arxiv.org/abs/2504.00810" target="_blank">Z1: E
 </p>
 
 <p align="center">
-  <a href=""><b>[📜 Paper]</b></a> •
+  <a href="https://arxiv.org/abs/2504.00810"><b>[📜 Paper]</b></a> •
   <a href="https://huggingface.co/efficientscaling/Z1-7B"><b>[🤗 HF Models]</b></a> •
   <a href="https://github.com/efficientscaling/Z1"><b>[🐱 GitHub]</b></a>
   <!-- <a href="https://9557c5365a6f44dc84.gradio.live"><b>[🐯 Gradio Demo]</b></a> -->
