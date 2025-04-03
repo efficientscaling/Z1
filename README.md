@@ -24,8 +24,8 @@ Repo for paper "<a href="https://arxiv.org/abs/2504.00810" target="_blank">Z1: E
 </p>
 
 <p align="center">
-    <img src="./assets/z1-comp.png" width="700">
-    <img src="./assets/tts.png" width="700">
+    <img src="./assets/z1-comp.png" width="11000">
+    <img src="./assets/tts.png" width="1000">
     <br>
 
 </p>
@@ -61,11 +61,11 @@ Repo for paper "<a href="https://arxiv.org/abs/2504.00810" target="_blank">Z1: E
 ## Examples
 
 <p align="center">
-    <img src="./assets/simple_reason.png" width="700">
+    <img src="./assets/simple_reason.png" width="1000">
     <br>
     <em>Simple Reasoning</em>
     <br>
-    <img src="./assets/complex_reason.png" width="700">
+    <img src="./assets/complex_reason.png" width="1000">
     <br>
     <em>Complex Reasoning</em>
     <br>
