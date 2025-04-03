@@ -58,6 +58,20 @@ Repo for paper "<a href="https://arxiv.org/abs/2504.00810" target="_blank">Z1: E
 - 🤗 [Z1 models](https://huggingface.co/efficientscaling/Z1-7B)
 - 🤗 [Z1 data](https://huggingface.co/datasets/efficientscaling/Z1-Code-Reasoning-107K) -->
 
+## Examples
+
+<p align="center">
+    <img src="./assets/simple_reason.png" width="700">
+    <br>
+    <em>Simple Reasoning</em>
+    <br>
+    <img src="./assets/complex_reason.png" width="700">
+    <br>
+    <em>Complex Reasoning</em>
+    <br>
+
+</p>
+
 ## Getting Started
 
 We open source the code and scripts we used for data curation, training, and evaluation for Z1 models, you can find more details in each directory.
@@ -65,6 +79,7 @@ We open source the code and scripts we used for data curation, training, and eva
 - ``src/eval``:  Evaluation scripts for Z1.
 - ``src/data``:  Data abaltion scripts for Z1.
 - ``scr/train``: Training scripts for Z1. We train Z1-7B with Fully Shard Data Parallel (FSDP) and set a global batch size to 128 for 2 epochs using 8 NVIDIA A100-80G GPUs.
+
 
 ## Gradio demo
 
