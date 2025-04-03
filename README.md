@@ -66,11 +66,180 @@ We open source the code and scripts we used for data curation, training, and eva
 - ``src/data``:  Data abaltion scripts for Z1.
 - ``scr/train``: Training scripts for Z1. We train Z1-7B with Fully Shard Data Parallel (FSDP) and set a global batch size to 128 for 2 epochs using 8 NVIDIA A100-80G GPUs.
 
+## Gradio demo
+
+Install `vllm` library firstly. We use `vllm==0.5.3.post1`.
+
+```python
+import copy
+from typing import List
+from dataclasses import dataclass
+
+import gradio as gr
+from vllm import LLM, SamplingParams
+from transformers import  AutoTokenizer
+
+BOX=r"\boxed{}"
+ANSWER_WITH_BOX=f"\n\nI overthought it, the final answer in {BOX} should be:\n\n"
+ANSWER_WITHOUT_BOX=f"\n\nI overthought it, the final answer should be:\n\n"
+
+model_name = "efficientscaling/Z1-7B"
+
+@dataclass
+class ThinkingLLM(LLM):
+
+    def __init__(self, *args, **kwargs):
+        """
+        Initialize the ThinkingLLM class.
+
+        Args:
+            max_tokens_thinking (int): Maximum budget in terms of tokens.
+            *args, **kwargs: Additional arguments passed to the parent LLM class.
+        """
+        super().__init__(*args, **kwargs)
+
+    def thinking_generate(self, prompts: List[str], sampling_params: SamplingParams = None, max_tokens_for_thinking: int = None):
+        """
+        Generate text with a specified budget.
+
+        Args:
+            prompt (str): The input prompt for the LLM.
+            sampling_params (SamplingParams): A SamplingParams object to configure generation.
+            budget (int): The maximum budget for generation (e.g., token limit).
+                          If None, defaults to the instance's max_budget.
+
+        Returns:
+            str: The generated text within the budget.
+        """
+
+        # If no SamplingParams is provided, create a default one
+        if sampling_params is None:
+            raise ValueError("Sampling_params can't be None!")
+        else:
+            all_max_tokens = sampling_params.max_tokens
+            # Override the max_tokens in the provided SamplingParams with the budget
+            sampling_params.max_tokens = max_tokens_for_thinking
+            print(f"All tokens: {all_max_tokens}")
+            print(f"Tokens for thinking: {max_tokens_for_thinking}")
+
+        trajectories = self.generate(prompts, sampling_params)
+
+        rethinking_str = ANSWER_WITHOUT_BOX
+        sampling_params.max_tokens = all_max_tokens
+
+        answers = copy.deepcopy(trajectories)
+
+        unfinished_id = []
+        thinking_token = 0
+        new_prompts = []
+
+        for id, traj in enumerate(trajectories):
+            if traj.outputs[0].finish_reason == 'length':
+                unfinished_id.append(id)
+                new_prompts.append(prompts[id] + traj.outputs[0].text + rethinking_str)
+            thinking_token += len(traj.outputs[0].token_ids)
+
+        avg_thinking_token = thinking_token / len(prompts)
+
+        if new_prompts:
+            print(new_prompts[0])
+
+            o = self.generate(
+                new_prompts,
+                sampling_params=sampling_params,
+            )
+            
+        for i, uid in enumerate(unfinished_id):
+            answers[uid] = o[i]
+
+        return new_prompts, answers
+
+
+def generate_text(prompt, max_tokens, max_tokens_for_thinking, temperature, top_p):
+
+    sampling_params = SamplingParams(
+        temperature=temperature,
+        max_tokens=max_tokens,
+        top_p=top_p,
+        skip_special_tokens=False,
+    )
+
+    trajectories, outputs = llm.thinking_generate(prompt, sampling_params, max_tokens_for_thinking=max_tokens_for_thinking)
+
+    return trajectories[0] + '\n\n' + outputs[0].outputs[0].text if trajectories else outputs[0].outputs[0].text
+
+
+llm = ThinkingLLM(
+    model=model_name,
+    tensor_parallel_size=1,
+    gpu_memory_utilization=0.96,
+    )
+
+
+with gr.Blocks() as demo:
+    gr.Markdown("# Reason with shifted thinking")
+    
+    with gr.Row():
+        with gr.Column():
+            prompt_input = gr.Textbox(
+                label="Prompt",
+                placeholder="Input",
+                lines=5,
+            )
+            max_tokens_for_thinking_input = gr.Slider(
+                label="shifted_thinking_window_size",
+                minimum=1,
+                maximum=32786,
+                value=4000,
+                step=1,
+            )
+            max_tokens_input = gr.Slider(
+                label="all_max_tokens",
+                minimum=1,
+                maximum=32786,
+                value=32786,
+                step=1,
+            )
+            temperature_input = gr.Slider(
+                label="Temperature",
+                minimum=00,
+                maximum=2.0,
+                value=0,
+                step=0.1,
+            )
+            top_p_input = gr.Slider(
+                label="Top-p",
+                minimum=0.0,
+                maximum=1.0,
+                value=1,
+                step=0.01,
+            )
+            generate_button = gr.Button("Generate")
+        
+        with gr.Column():
+            output_text = gr.Textbox(
+                label="Shifted Thinking Window",
+                placeholder="Text is here...",
+                lines=10,
+            )
+    
+    
+    generate_button.click(
+        fn=generate_text,
+        inputs=[prompt_input, max_tokens_for_thinking_input,max_tokens_input,  temperature_input, top_p_input],
+        outputs=output_text, 
+    )
+
+
+if __name__ == "__main__":
+    demo.launch()
+
+```
+
 ## Inference
 
 #### vLLM with Shifted Thinking Window
 
-Install `vllm` library firstly. We use `vllm==0.5.3.post1`.
 
 ```python
 import copy
