@@ -89,29 +89,9 @@ model_name = "efficientscaling/Z1-7B"
 class ThinkingLLM(LLM):
 
     def __init__(self, *args, **kwargs):
-        """
-        Initialize the ThinkingLLM class.
-
-        Args:
-            max_tokens_thinking (int): Maximum budget in terms of tokens.
-            *args, **kwargs: Additional arguments passed to the parent LLM class.
-        """
         super().__init__(*args, **kwargs)
 
     def thinking_generate(self, prompts: List[str], sampling_params: SamplingParams = None, max_tokens_for_thinking: int = None):
-        """
-        Generate text with a specified budget.
-
-        Args:
-            prompt (str): The input prompt for the LLM.
-            sampling_params (SamplingParams): A SamplingParams object to configure generation.
-            budget (int): The maximum budget for generation (e.g., token limit).
-                          If None, defaults to the instance's max_budget.
-
-        Returns:
-            str: The generated text within the budget.
-        """
-
         # If no SamplingParams is provided, create a default one
         if sampling_params is None:
             raise ValueError("Sampling_params can't be None!")
