@@ -24,8 +24,8 @@ Repo for paper "<a href="https://arxiv.org/abs/2504.00810" target="_blank">Z1: E
 </p>
 
 <p align="center">
-    <img src="./assets/z1-comp.png" width="11000">
-    <img src="./assets/tts.png" width="1000">
+    <img src="./assets/z1-comp.png" width="800">
+    <img src="./assets/tts.png" width="800">
     <br>
 
 </p>
