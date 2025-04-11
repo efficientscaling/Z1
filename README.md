@@ -49,7 +49,7 @@ Repo for paper "<a href="https://arxiv.org/abs/2504.00810" target="_blank">Z1: E
 
 
 ## Updates
-<!-- - **[2025/04/01]** 🎉 We have released our [training data](https://huggingface.co/datasets/efficientscaling/Z1-Code-Reasoning-107K))! -->
+- **[2025/04/11]** 🎉 Updated Z1 [slides](https://docs.google.com/presentation/d/1s1ihKGEAFq7G1IjnpmYfH6BUTP9dwTlX/edit?usp=sharing&ouid=106146503292223523125&rtpof=true&sd=true)! If you like this project, please give us a star ⭐ on GitHub for the latest update.
 - **[2025/04/01]** 🎉 We have released our [Z1-7B](https://huggingface.co/efficientscaling/Z1-7B) model and our [training data](https://huggingface.co/datasets/efficientscaling/Z1-Code-Reasoning-107K) through Huggingface!
 
 
